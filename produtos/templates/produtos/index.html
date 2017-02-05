@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'produtos/style.css' %}" />
+
+{% if latest_products %}
+    <ul>
+    {% for product in latest_products %}
+        <li><a href="{% url 'produtos:detail' product.id %}">{{ product.descricao }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não há produtos cadastrados.</p>
+{% endif %}

@@ -1,0 +1,10 @@
+<h1>{{ produto.descricao }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'produtos:comprar' produto.id %}" method="post">
+{% csrf_token %}
+    <label>Quantidade: </label><input type="text" name="quantidade" />
+<br />
+<input type="submit" value="Adicionar ao carrinho" />
+</form>
