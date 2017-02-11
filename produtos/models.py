@@ -5,6 +5,7 @@ from django.db import models
 class TipoProduto(models.Model):
     mnemonico = models.CharField(max_length=100)
     nome = models.CharField(max_length=200)
+    codigo = models.CharField(max_length=5)
 
     def __str__(self):
         return self.nome
@@ -15,6 +16,10 @@ class Produto(models.Model):
     data_cadastro = models.DateTimeField('Data de cadastro')
     path_imagem = models.CharField(max_length=500)
     tipo = models.ForeignKey(TipoProduto)
+
+    @property
+    def codigo(self):
+        return '{}-{}'.format(self.tipo.codigo, self.id)
 
     def __str__(self):
         return self.descricao
@@ -32,8 +37,9 @@ class EstoqueProduto(models.Model):
         (22, '22'),
         (23, '23'),
     )
-    tamanho = models.IntegerField(choices=TAMANHOS_DISPONIVEIS)
+    tamanho = models.IntegerField(choices=TAMANHOS_DISPONIVEIS, null=True)
     produto = models.ForeignKey(Produto)
+    preco = models.DecimalField(decimal_places=2, max_digits=6)
 
     def __str__(self):
         return '{} - Quantidade: {} - Tamanho: {}'.format(self.produto.descricao, self.quantidade, self.tamanho)

@@ -27,8 +27,12 @@ class ResultsView(generic.DetailView):
 
 
 def produtos(request, tipo_produto):
-
-    return render(request, 'produtos/produtos.html')
+    estoques = EstoqueProduto.objects.filter(
+        produto__tipo__mnemonico=tipo_produto
+    )
+    return render(request, 'produtos/produtos.html', {
+        'estoques': estoques
+    })
 
 
 def estoque(request, produto_id):

@@ -51,7 +51,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="#about">Sobre nós</a></li>
                 <li><a href="#contact">Contatos</a></li>
                 <li class="dropdown">
@@ -140,9 +140,9 @@
 
       <table align="center" width="90%" cellpadding="10" cellspacing="10">
         <tr>
-          <td><a href="{% url 'produtos:list_produtos' 'anel' %}" ><img src="{% static 'produtos/images/aneis_home.jpg' %}"  class="img-fluid featurette-image img-responsive center-block" data-src="holder.js/400x500/auto"></a></td>
+          <td><a href="{% url 'produtos:list_produtos' 'anel' %}" ><img src="{% static 'produtos/images/aneis_home.jpg' %}"  class="img-fluid featurette-image img-responsive center-block" ></a></td>
           <td width="10px"></td>
-          <td><img src="{% static 'produtos/images/oculos_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/600x500/auto" alt="Generic placeholder image"></td>
+          <td><a href="{% url 'produtos:list_produtos' 'oculos' %}" ><img src="{% static 'produtos/images/oculos_home.jpg' %}" class="featurette-image img-responsive center-block" ></a></td>
         </tr>
         <tr>
           <td height="10px"></td>
@@ -151,11 +151,11 @@
       <table align="center" width="90%" cellpadding="10" cellspacing="10">
         <tr>
           <td>
-            <img src="{% static 'produtos/images/berloques_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/600x250/auto" alt="Generic placeholder image">
+            <a href="{% url 'produtos:list_produtos' 'berloque' %}" ><img src="{% static 'produtos/images/berloques_home.jpg' %}" class="featurette-image img-responsive center-block"></a>
           </td>
           <td width="10px"></td>
           <td rowspan="3">
-            <img src="{% static 'produtos/images/brincos_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/400x510/auto" alt="Generic placeholder image">
+            <a href="{% url 'produtos:list_produtos' 'brinco' %}" ><img src="{% static 'produtos/images/brincos_home.jpg' %}" class="featurette-image img-responsive center-block" ></a>
           </td>
         </tr>
         <tr>
@@ -163,7 +163,7 @@
         </tr>
         <tr>
           <td>
-            <img src="{% static 'produtos/images/pulseiras_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/600x250/auto" alt="Generic placeholder image">
+            <a href="{% url 'produtos:list_produtos' 'pulseira' %}" ><img src="{% static 'produtos/images/pulseiras_home.jpg' %}" class="featurette-image img-responsive center-block" ></a>
           </td>
         </tr>
       </table>
