@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'produtos/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'produtos/eyk-biju.css' %}" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{% static 'produtos/bootstrap/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
@@ -46,7 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#"><img src="{% static 'produtos/images/eyk_biju.jpg' %}" /> </a>
+              <a class="navbar-brand" href="#">EYK.biju</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
@@ -86,8 +87,11 @@
       <div class="carousel-inner" role="listbox">
         <div class="item active">
           <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+
+
           <div class="container">
             <div class="carousel-caption">
+              <img src="{% static 'produtos/images/eyk_biju.jpg' %}" />
               <h1>Example headline.</h1>
               <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
@@ -132,66 +136,37 @@
 
     <div class="container marketing">
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
-
       <!-- START THE FEATURETTES -->
 
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
+      <table align="center" width="90%" cellpadding="10" cellspacing="10">
+        <tr>
+          <td><a href="{% url 'produtos:list_produtos' 'anel' %}" ><img src="{% static 'produtos/images/aneis_home.jpg' %}"  class="img-fluid featurette-image img-responsive center-block" data-src="holder.js/400x500/auto"></a></td>
+          <td width="10px"></td>
+          <td><img src="{% static 'produtos/images/oculos_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/600x500/auto" alt="Generic placeholder image"></td>
+        </tr>
+        <tr>
+          <td height="10px"></td>
+        </tr>
+      </table>
+      <table align="center" width="90%" cellpadding="10" cellspacing="10">
+        <tr>
+          <td>
+            <img src="{% static 'produtos/images/berloques_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/600x250/auto" alt="Generic placeholder image">
+          </td>
+          <td width="10px"></td>
+          <td rowspan="3">
+            <img src="{% static 'produtos/images/brincos_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/400x510/auto" alt="Generic placeholder image">
+          </td>
+        </tr>
+        <tr>
+          <td height="10px"></td>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% static 'produtos/images/pulseiras_home.jpg' %}" class="featurette-image img-responsive center-block" data-src="holder.js/600x250/auto" alt="Generic placeholder image">
+          </td>
+        </tr>
+      </table>
 
       <hr class="featurette-divider">
 

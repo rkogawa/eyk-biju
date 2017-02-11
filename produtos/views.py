@@ -26,6 +26,11 @@ class ResultsView(generic.DetailView):
     template_name = 'produtos/results.html'
 
 
+def produtos(request, tipo_produto):
+
+    return render(request, 'produtos/produtos.html')
+
+
 def estoque(request, produto_id):
     return HttpResponse("Estoque do produto %s." % produto_id)
 

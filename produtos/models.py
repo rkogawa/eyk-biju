@@ -3,6 +3,7 @@ from django.db import models
 
 
 class TipoProduto(models.Model):
+    mnemonico = models.CharField(max_length=100)
     nome = models.CharField(max_length=200)
 
     def __str__(self):
