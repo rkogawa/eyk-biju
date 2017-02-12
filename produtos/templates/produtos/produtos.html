@@ -66,6 +66,7 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>
+                <li><a href="#">Meu carrinho</a></li>
               </ul>
             </div>
           </div>
@@ -93,7 +94,7 @@
           {% else %}
             <h4>R${{ estoque.preco }}</h4>
           {% endif %}
-          <p><a class="btn btn-default" href="#" role="button">Comprar</a></p>
+          <p><a class="btn btn-default" href="{% url 'produtos:comprar' estoque.produto.id %}" role="button">Comprar</a></p>
         </div><!-- /.col-lg-4 -->
           {% endfor %}
       </div><!-- /.row -->

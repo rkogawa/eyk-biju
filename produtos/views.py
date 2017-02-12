@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.core.cache import cache
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
@@ -41,12 +41,12 @@ def estoque(request, produto_id):
 
 def comprar(request, produto_id):
     produto = get_object_or_404(Produto, pk=produto_id)
-    try:
-        estoque = EstoqueProduto.objects.get(produto__id=produto_id)
-        quantidade = request.POST['quantidade']
-        return HttpResponseRedirect(reverse('produtos:results', args=(produto.id,)))
-    except EstoqueProduto.DoesNotExist:
-        return render(request, 'produtos/detail.html', {
-            'product': produto,
-            'error_message': "Não há estoque para este produto.",
-        })
+    session_key = request.session.session_key
+
+    carrinho = cache.get(session_key, {})
+    if carrinho.get(produto_id):
+        carrinho[produto_id] = carrinho.get(produto_id) + 1
+    else:
+        carrinho[produto_id] = 1
+    cache.set(session_key, carrinho)
+    return HttpResponseRedirect(reverse('produtos:list_produtos', args=(produto.tipo.mnemonico,)))
