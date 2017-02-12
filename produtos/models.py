@@ -37,10 +37,10 @@ class EstoqueProduto(models.Model):
         (22, '22'),
         (23, '23'),
     )
-    tamanho = models.IntegerField(choices=TAMANHOS_DISPONIVEIS, null=True)
+    tamanho = models.IntegerField(choices=TAMANHOS_DISPONIVEIS, null=True, blank=True)
     produto = models.ForeignKey(Produto)
     preco = models.DecimalField(decimal_places=2, max_digits=6)
-    preco_sem_desconto = models.DecimalField(decimal_places=2, max_digits=6, null=True)
+    preco_sem_desconto = models.DecimalField(decimal_places=2, max_digits=6, null=True, blank=True)
 
     def __str__(self):
         return '{} - Quantidade: {} - Tamanho: {}'.format(self.produto.descricao, self.quantidade, self.tamanho)

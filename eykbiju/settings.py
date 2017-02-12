@@ -48,8 +48,8 @@ AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
 
 AWS_STORAGE_BUCKET_NAME = 'eykbiju'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_ACCESS_KEY_ID = 'AKIAJY6NDBORPYHUR43A'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
