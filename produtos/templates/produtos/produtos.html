@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static from staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -87,9 +87,13 @@
       <div class="row">
           {% for estoque in estoques %}
         <div class="col-lg-4">
-          <img class="img-thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-thumbnail" src="{% static estoque.produto.path_imagem %}" width="400" height="400">
           <h3>{{ estoque.produto.descricao }} - {{ estoque.produto.codigo }}</h3>
-          <h3>R${{ estoque.preco }}</h3>
+          {% if estoque.preco_sem_desconto %}
+            <h4>De: <strike>R${{ estoque.preco_sem_desconto }}</strike> Por: R${{ estoque.preco }}</h4>
+          {% else %}
+            <h4>R${{ estoque.preco }}</h4>
+          {% endif %}
           <p><a class="btn btn-default" href="#" role="button">Comprar</a></p>
         </div><!-- /.col-lg-4 -->
           {% endfor %}
