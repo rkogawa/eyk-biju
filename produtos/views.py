@@ -39,14 +39,14 @@ def estoque(request, produto_id):
     return HttpResponse("Estoque do produto %s." % produto_id)
 
 
-def comprar(request, produto_id):
-    produto = get_object_or_404(Produto, pk=produto_id)
+def comprar(request, estoque_id):
+    estoque = get_object_or_404(EstoqueProduto, pk=estoque_id)
     session_key = request.session.session_key
 
     carrinho = cache.get(session_key, {})
-    if carrinho.get(produto_id):
-        carrinho[produto_id] = carrinho.get(produto_id) + 1
+    if carrinho.get(estoque_id):
+        carrinho[estoque_id] = carrinho.get(estoque_id) + 1
     else:
-        carrinho[produto_id] = 1
+        carrinho[estoque_id] = 1
     cache.set(session_key, carrinho)
-    return HttpResponseRedirect(reverse('produtos:list_produtos', args=(produto.tipo.mnemonico,)))
+    return HttpResponseRedirect(reverse('produtos:list_produtos', args=(estoque.produto.tipo.mnemonico,)))

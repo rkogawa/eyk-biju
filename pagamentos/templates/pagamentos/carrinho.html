@@ -84,20 +84,28 @@
 
       <hr class="featurette-divider">
 
-      <div class="row">
-          {% for estoque in estoques %}
-        <div class="col-lg-4">
-          <img class="img-thumbnail" src="{% static estoque.produto.path_imagem %}" width="400" height="400">
-          <h3>{{ estoque.produto.descricao }} - {{ estoque.produto.codigo }}</h3>
-          {% if estoque.preco_sem_desconto %}
-            <h4>De: <strike style="color: red">R${{ estoque.preco_sem_desconto }}</strike> Por: R${{ estoque.preco }}</h4>
-          {% else %}
-            <h4>R${{ estoque.preco }}</h4>
-          {% endif %}
-          <p><a class="btn btn-default" href="{% url 'produtos:comprar' estoque.id %}" role="button">Comprar</a></p>
-        </div><!-- /.col-lg-4 -->
+        <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Meu Pedido</div>
+        <table class="table">
+            <tr>
+                <td>Produto</td>
+                <td>Quantidade</td>
+                <td>Preço</td>
+                <td>Valor Total</td>
+            </tr>
+          {% for compra in compras %}
+        <tr>
+            <td>
+                <img class="img-thumbnail" src="{% static compra.item.produto.path_imagem %}" width="100" height="100" />{{ compra.item.produto.descricao }} - {{ compra.item.produto.codigo }}
+            </td>
+            <td>{{ compra.quantidade }}</td>
+            <td>R${{ compra.item.preco }}</td>
+            <td>R${{ compra.valor_total }}</td>
+        </tr>
           {% endfor %}
-      </div><!-- /.row -->
+        </table>
+        </div>
 
       <hr class="featurette-divider">
 
