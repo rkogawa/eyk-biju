@@ -85,14 +85,14 @@
       <hr class="featurette-divider">
 
         <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Meu Pedido</div>
+        <!-- Default panel contents -->
+        <div class="panel-heading">Meu Pedido</div>
         <table class="table">
             <tr>
-                <td>Produto</td>
-                <td>Quantidade</td>
-                <td>Preço</td>
-                <td>Valor Total</td>
+                <td width="55%">Produto</td>
+                <td width="15%">Quantidade</td>
+                <td width="15%">Preço</td>
+                <td width="15%">Valor Total</td>
             </tr>
           {% for compra in compras %}
         <tr>
@@ -104,11 +104,38 @@
             <td>R${{ compra.valor_total }}</td>
         </tr>
           {% endfor %}
+
+        <form action="{% url 'pagamentos:calcular_frete' %}" method="post">
+        {% csrf_token %}
+            <tr>
+            <td/>
+            <td colspan="2">
+                <label for="cep">CEP: </label>
+                <input id="cep" type="text" name="cep" maxlength="9" size="10" value="{{ cep }}">
+            </td>
+            <td>
+                <input type="submit" value="Calcular">
+            </td>
+            </tr>
+            {% if valor_frete_sedex %}
+            <tr>
+                <td/>
+                <td colspan="2"><label>Valor do frete SEDEX:</label></td>
+                <td>{{ valor_frete_sedex }}</td>
+            </tr>
+            {% endif %}
+            {% if valor_frete_pac %}
+            <tr>
+                <td/>
+                <td colspan="2"><label>Valor do frete PAC:</label></td>
+                <td>{{ valor_frete_pac }}</td>
+            </tr>
+            {% endif %}
+        </form>
         </table>
         </div>
 
       <hr class="featurette-divider">
-
       <!-- /END THE FEATURETTES -->
 
 

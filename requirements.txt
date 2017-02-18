@@ -1,2 +1,4 @@
 redis
 django-redis-cache
+requests
+xmltodict
