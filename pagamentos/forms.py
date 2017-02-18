@@ -2,17 +2,21 @@ import requests
 import xmltodict
 from django import forms
 
+
+CODIGO_PAC = '41106'
+CODIGO_SEDEX = '40010'
+
 class CalcularFreteForm(forms.Form):
 
     cep = forms.CharField(max_length=9)
-    valor_frete = forms.CharField(required=False)
+    frete_selecionado = forms.CharField(required=False)
 
     def calcular_frete(self):
         cep = self.cleaned_data.get('cep')
         r = requests.get('http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo', params={
             'nCdEmpresa': '',
             'sDsSenha': '',
-            'nCdServico': '40010, 41106',
+            'nCdServico': '{}, {}'.format(CODIGO_SEDEX, CODIGO_PAC),
             'sCepOrigem': '04141050',
             'sCepDestino': cep,
             'nVlPeso': '0.200',
@@ -27,8 +31,10 @@ class CalcularFreteForm(forms.Form):
         })
         frete_result = xmltodict.parse(r.text)
         servicos = frete_result.get('cResultado').get('Servicos').get('cServico')
+        for servico in servicos:
+            servico['Descricao'] = 'Sedex' if servico['Codigo'] == CODIGO_SEDEX else 'PAC'
         return {
             'cep': cep,
-            'valor_frete_sedex': servicos[0].get('Valor'),
-            'valor_frete_pac': servicos[1].get('Valor'),
+            'tipo_frete': self.cleaned_data.get('frete_selecionado'),
+            'fretes': servicos,
         }

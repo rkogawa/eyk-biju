@@ -89,14 +89,14 @@
         <div class="panel-heading">Meu Pedido</div>
         <table class="table">
             <tr>
-                <td width="55%">Produto</td>
+                <td colspan="2" width="55%">Produto</td>
                 <td width="15%">Quantidade</td>
                 <td width="15%">Preço</td>
                 <td width="15%">Valor Total</td>
             </tr>
           {% for compra in compras %}
         <tr>
-            <td>
+            <td colspan="2">
                 <img class="img-thumbnail" src="{% static compra.item.produto.path_imagem %}" width="100" height="100" />{{ compra.item.produto.descricao }} - {{ compra.item.produto.codigo }}
             </td>
             <td>{{ compra.quantidade }}</td>
@@ -107,31 +107,40 @@
 
         <form action="{% url 'pagamentos:calcular_frete' %}" method="post">
         {% csrf_token %}
-            <tr>
-            <td/>
-            <td colspan="2">
+        <tr>
+            <td width="40%">
                 <label for="cep">CEP: </label>
                 <input id="cep" type="text" name="cep" maxlength="9" size="10" value="{{ cep }}">
             </td>
-            <td>
-                <input type="submit" value="Calcular">
+            <td width="15%">
+                <input type="submit" value="Calcular Frete">
             </td>
-            </tr>
-            {% if valor_frete_sedex %}
+            <td/>
+            <td><label>Subtotal:</label></td>
+            <td>R${{ valor_compras }}</td>
+        </tr>
+        {% for frete in fretes %}
             <tr>
-                <td/>
-                <td colspan="2"><label>Valor do frete SEDEX:</label></td>
-                <td>{{ valor_frete_sedex }}</td>
+                <td>
+                    <input type="radio" name="frete_selecionado" id="frete{{ forloop.counter }}" value="{{ frete.Codigo }}" {% if frete_selecionado == "{{ tipo_frete }}" %}checked="checked"{% endif %} " />
+                    <label>{{ frete.Descricao }} - R${{ frete.Valor }}</label>
+                </td>
+                <td colspan="4" />
             </tr>
-            {% endif %}
-            {% if valor_frete_pac %}
-            <tr>
-                <td/>
-                <td colspan="2"><label>Valor do frete PAC:</label></td>
-                <td>{{ valor_frete_pac }}</td>
-            </tr>
-            {% endif %}
+        {% endfor %}
+        <tr>
+            <td colspan="2"><input type="submit" value="Atualizar Total"/></td>
+            <td/>
+            <td><label>Frete:</label></td>
+            <td>R${{ valor_frete }}</td>
+        </tr>
+        <tr>
+            <td colspan="3" />
+            <td><label>Valor Total:</label></td>
+            <td>R${{ valor_total }}</td>
+        </tr>
         </form>
+
         </table>
         </div>
 
