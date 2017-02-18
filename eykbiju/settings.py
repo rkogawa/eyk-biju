@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'cart',
 ]
 
 AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
@@ -141,4 +142,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+# STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

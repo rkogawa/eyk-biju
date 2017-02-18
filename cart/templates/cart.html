@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+ <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-cookies.min.js"></script>
+	<script src="{% static 'app.js' %}"></script>
+	<script src="{% static 'controllers/cart-controller.js' %}"></script>
+ </head>
+ <body ng-app="app">
+	<h2>Carrinho de Compras</h2>
+	<form action="" method="post">{% csrf_token %}
+	<div ng-controller="CartController">
+ 	<table class="table">
+   	<tr>
+     	<th>Descrição</th>
+     	<th>Quantidade</th>
+     	<th>Custo</th>
+     	<th>Total</th>
+     	<th></th>
+   	</tr>
+   	<tr ng-repeat="item in pedido.itens">
+     	<td>{[{ item.descricao }]}</td>
+     	<td><input type="number" ng-model="item.qtd" min="1" max="10"></td>
+     	<td>{[{ item.preco }]}</td>
+     	<td>{[{item.qtd * item.preco | currency}]}</td>
+     	<td>
+       	[<a href ng-click="excluirItem($index)">X</a>]
+     	</td>
+   	</tr>
+   	<tr>
+     	<td><a href ng-click="adicionarItem()" class="btn btn-small">Adicionar Item</a></td>
+     	<td></td>
+     	<td>Total:</td>
+     	<td>{[{pedido.total() | currency}]}</td>
+   	</tr>
+ 	</table>
+	</div>
+	</form>
+ </body>
+</html>
