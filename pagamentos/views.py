@@ -1,4 +1,6 @@
 from decimal import Decimal
+
+from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.shortcuts import render
 
@@ -38,3 +40,8 @@ def calcular_frete(request):
         if form.is_valid():
             return carrinho(request, **form.calcular_frete())
     return carrinho(request)
+
+
+@login_required
+def finalizar_pedido(request):
+    print(request.user)
