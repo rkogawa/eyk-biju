@@ -2,37 +2,145 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+    <div class="container marketing">
 
-<form method="post" action="{% url 'accounts:login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+      <hr class="featurette-divider">
 
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
+        <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Esqueceu a senha?</a></div>
+                </div>
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'accounts:password_reset' %}">Lost password?</a></p>
+                <div style="padding-top:30px" class="panel-body" >
 
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+
+                        {% if form.errors %}
+                        <p>Usuário/Senha incorreto. Por favor tente novamente.</p>
+                        {% endif %}
+
+                        <form id="loginform" class="form-horizontal" role="form" method="post" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Usuário">
+                                    </div>
+
+                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="Senha">
+                                    </div>
+
+
+
+                                <div style="margin-top:10px" class="form-group">
+                                    <!-- Button -->
+
+                                    <div class="col-sm-12 controls">
+                                      <a id="btn-login" href="#" onClick="document.getElementById('loginform').submit();" class="btn btn-success">Login  </a>
+                                      <a id="btn-fblogin" href="#" class="btn btn-primary">Login usando conta do Facebook</a>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                            Não tenho uma conta!
+                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                            Faça seu cadastro aqui.
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+        </div>
+        <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Sign Up</div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+                        </div>
+                        <div class="panel-body" >
+                            <form id="signupform" class="form-horizontal" role="form">
+
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="firstname" class="col-md-3 control-label">First Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="passwd" placeholder="Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="icode" class="col-md-3 control-label">Invitation Code</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="icode" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Button -->
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                                        <!--<span style="margin-left:8px;">or</span>-->
+                                    </div>
+                                </div>
+
+                                <!--<div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">-->
+
+                                    <!--<div class="col-md-offset-3 col-md-9">-->
+                                        <!--<button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+
+
+                            </form>
+                         </div>
+                    </div>
+
+
+
+
+         </div>
+    </div>
+
+      <hr class="featurette-divider">
+
+    </div>
 {% endblock %}

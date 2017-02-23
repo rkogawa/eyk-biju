@@ -50,7 +50,7 @@
             <tr>
                 <td>
                     <input type="radio" name="frete_selecionado" id="frete{{ forloop.counter }}" value="{{ frete.Codigo }}" {% if frete_selecionado == "{{ tipo_frete }}" %}checked="checked"{% endif %} " />
-                    <label>{{ frete.Descricao }} - R${{ frete.Valor }}</label>
+                    <label>{{ frete.Descricao }} - Entrega prevista para {{ frete.PrazoEntrega }} dia(s) úteis - R${{ frete.Valor }}</label>
                 </td>
                 <td colspan="4" />
             </tr>
