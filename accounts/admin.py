@@ -15,7 +15,7 @@ class ClienteCreationForm(forms.ModelForm):
 
     class Meta:
         model = ClienteUser
-        fields = ('email', 'dia_nascimento')
+        fields = ('email', 'data_nascimento', 'nome', 'sobrenome')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -43,7 +43,7 @@ class ClienteChangeForm(forms.ModelForm):
 
     class Meta:
         model = ClienteUser
-        fields = ('email', 'password', 'dia_nascimento', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'data_nascimento', 'is_active', 'is_admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -60,11 +60,11 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'dia_nascimento', 'is_admin')
+    list_display = ('email', 'data_nascimento', 'is_admin')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('dia_nascimento',)}),
+        ('Personal info', {'fields': ('data_nascimento',)}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -72,7 +72,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'dia_nascimento', 'password1', 'password2')}
+            'fields': ('email', 'data_nascimento', 'password1', 'password2')}
         ),
     )
     search_fields = ('email',)

@@ -4,13 +4,13 @@ from django.db import models
 
 class ClienteUserManager(BaseUserManager):
 
-    def create_user(self, email, dia_nascimento, senha):
+    def create_user(self, email, data_nascimento, senha):
         if not email:
             raise ValueError('Email é obrigatório para criação de usuário.')
 
         user = self.model(
             email=self.normalize_email(email),
-            dia_nascimento=dia_nascimento,
+            data_nascimento=data_nascimento,
         )
 
         user.set_password(senha)
@@ -24,14 +24,16 @@ class ClienteUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    dia_nascimento = models.DateField()
+    data_nascimento = models.DateField()
+    nome = models.CharField(max_length=200)
+    sobrenome = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = ClienteUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['dia_nascimento']
+    REQUIRED_FIELDS = ['data_nascimento']
 
     def __str__(self):
         return self.email
