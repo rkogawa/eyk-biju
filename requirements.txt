@@ -5,3 +5,5 @@ xmltodict==0.10.2
 django==1.10
 gunicorn==19.4.3
 gevent==1.1a2
+django-storages
+boto
