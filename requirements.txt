@@ -7,4 +7,4 @@ gunicorn==19.4.3
 gevent==1.1a2
 django-storages==1.5.2
 boto==2.46.1
-psycopg2
+psycopg2==2.7

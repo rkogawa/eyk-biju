@@ -1,7 +1,7 @@
 # Base python 3.4 build, inspired by https://github.com/Pakebo/eb-docker-django-simple
-# Python 3.4 | Django
+# Python 3.5 | Django
 
-FROM python:3.4
+FROM python:3.5
 MAINTAINER Glyn Jackson (me@glynjackson.org)
 
 ##############################################################################
