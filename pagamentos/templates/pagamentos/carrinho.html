@@ -67,7 +67,7 @@
             <td>R${{ valor_total }}</td>
         </tr>
         </form>
-        <form action="{% url 'pagamentos:finalizar_pedido' %}" method="post">
+        <form action="{% url 'pagamentos:carrinho' %}" method="post">
         {% csrf_token %}
         <tr>
             <td colspan="4" />
