@@ -1,4 +1,7 @@
-redis
-django-redis-cache
-requests
-xmltodict
+redis==2.10.5
+django-redis-cache==1.7.1
+requests==2.13.0
+xmltodict==0.10.2
+django==1.10
+gunicorn==19.4.3
+gevent==1.1a2

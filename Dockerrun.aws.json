@@ -1,4 +1,12 @@
 {
   "AWSEBDockerrunVersion": "1",
-  "Logging": "/var/eb_log"
+  "Image": {
+    "Name": "rkogawa/eykbiju:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8002"
+    }
+  ]
 }

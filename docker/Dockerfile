@@ -2,7 +2,7 @@
 # Python 3.4 | Django
 
 FROM python:3.4
-MAINTAINER Rodrigo Ogawa (rkogawa@gmail.com)
+MAINTAINER Glyn Jackson (me@glynjackson.org)
 
 ##############################################################################
 # Environment variables
@@ -40,13 +40,14 @@ RUN useradd webapp -G webapps
 RUN mkdir -p /var/log/webapp/ && chown -R webapp /var/log/webapp/ && chmod -R u+rX /var/log/webapp/
 RUN mkdir -p /var/run/webapp/ && chown -R webapp /var/run/webapp/ && chmod -R u+rX /var/run/webapp/
 
+
 ##############################################################################
 # Install and configure supervisord
 ##############################################################################
 
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
-ADD ./deploy/supervisor_conf.d/webapp.conf /etc/supervisor/conf.d/webapp.conf
+ADD ./supervisor_conf.d/webapp.conf /etc/supervisor/conf.d/webapp.conf
 
 ##############################################################################
 # Install dependencies and run scripts.
@@ -60,7 +61,7 @@ RUN pip install -r requirements.txt
 # Run start.sh script when the container starts.
 # Note: If you run migrations etc outside CMD, envs won't be available!
 ##############################################################################
-CMD ["sh", "./deploy/container_start.sh"]
+CMD ["sh", "./docker/container_start.sh"]
 
 # Expose listen ports
 EXPOSE 8002
