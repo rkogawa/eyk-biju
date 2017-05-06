@@ -3,8 +3,8 @@ import xmltodict
 from django import forms
 
 
-CODIGO_PAC = '41106'
-CODIGO_SEDEX = '40010'
+CODIGO_PAC = '04510'
+CODIGO_SEDEX = '04014'
 
 class CalcularFreteForm(forms.Form):
 
@@ -32,7 +32,7 @@ class CalcularFreteForm(forms.Form):
         frete_result = xmltodict.parse(r.text)
         servicos = frete_result.get('cResultado').get('Servicos').get('cServico')
         for servico in servicos:
-            servico['Descricao'] = 'Sedex' if servico['Codigo'] == CODIGO_SEDEX else 'PAC'
+            servico['Descricao'] = 'Sedex' if servico['Codigo'] == str(int(CODIGO_SEDEX)) else 'PAC'
         return {
             'cep': cep,
             'tipo_frete': self.cleaned_data.get('frete_selecionado'),

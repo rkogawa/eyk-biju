@@ -11,9 +11,7 @@ from produtos.models import EstoqueProduto
 
 def carrinho(request, **kwargs):
     session_key = request.session.session_key
-    # TODO Comentado ate o cache do redis estar ok
-    # carrinho = cache.get(session_key, {})
-    carrinho = {}
+    carrinho = cache.get(session_key, {})
     compras = []
 
     valor_compras = 0
